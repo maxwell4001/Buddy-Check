@@ -4,5 +4,7 @@
     <string name="hello">Hello World, BuddyCheckActivity!</string>
     <string name="app_name">Buddy-Check</string>
     <string name="newBuddyEvent">New Event</string>
+    <string name="createContactButtonText">Pick Contact</string>
+    <string name="createalarmtitle">Create a new alarm</string>
 
 </resources>

@@ -1,15 +1,18 @@
-package maxwell.buddycheck;
+package maxwell.buddycheck.activity;
 
+import maxwell.buddycheck.BuddyCheckEvent;
+import maxwell.buddycheck.EventDataProvider;
+import maxwell.buddycheck.R;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class BuddyCheckActivity extends Activity {
     /** Called when the activity is first created. */
@@ -36,8 +39,11 @@ public class BuddyCheckActivity extends Activity {
         
     }
     
+    
     public void newEventClick(View v)
     {
-    	Toast.makeText(this, "Create something new...", Toast.LENGTH_LONG).show();
+    	Intent intent=new Intent(BuddyCheckActivity.this, BuddyCheckCreateEventActivity.class );
+    	startActivity(intent);
     }
+    
 }
