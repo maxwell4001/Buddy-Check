@@ -17,7 +17,6 @@ public class BuddyCheckCreateEventActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.newbuddycheckevent);
@@ -31,14 +30,16 @@ public class BuddyCheckCreateEventActivity extends Activity {
 		int hasPhone = c.getInt(c.getColumnIndexOrThrow(ContactsContract.Contacts.HAS_PHONE_NUMBER));
 
 		if (hasPhone == 1) {
+			
+			// grab just the mobile phone numbers.
+			// select all phone numbers that belong to this contact_id... with type = TYPE_MOBILE.
+			
 			Cursor phones = getContentResolver().query(
 					ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
 					null,
 					ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = "
 							+ contactId + " and " +  ContactsContract.CommonDataKinds.Phone.TYPE + " = "  + ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE, null, null);
 			while (phones.moveToNext()) {
-				// make sure to grab the mobile phone...
-				// how?? what column describes mobile type??
 				System.out.println("phones = " + phones);
 				
 				Log.i("MWB", ContactsContract.CommonDataKinds.Phone.TYPE);
@@ -48,7 +49,7 @@ public class BuddyCheckCreateEventActivity extends Activity {
 				phoneNumber = phones
 						.getString(phones
 								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-				//break;
+				break;
 			}
 			phones.close();
 		}
@@ -92,8 +93,6 @@ public class BuddyCheckCreateEventActivity extends Activity {
 		if (resultCode != Activity.RESULT_OK) {
 			return;
 		}
-
-		String phoneNumber;
 
 		switch (requestCode) {
 		case (PICK_CONTACT):
